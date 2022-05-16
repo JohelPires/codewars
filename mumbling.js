@@ -13,7 +13,7 @@ function accum(s) {
     }
 
     
-    return s.toUpperCase().split('').map(addLetters)
+    return s.toUpperCase().split('').map(addLetters).join('-')
 }
 
 console.clear()
