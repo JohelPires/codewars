@@ -1,8 +1,15 @@
 function tribonacci(signature,n){
     //your code here
 
-    const result = []
+    const result = [...signature]
+
     let novo
+
+    if (n < signature.length){
+      for (let i=0; i<3-n;i++){
+        result.pop()
+      }
+    }
 
     for (let i = 2; i < n-1; i++){
         
