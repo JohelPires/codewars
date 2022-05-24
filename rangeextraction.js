@@ -1,42 +1,23 @@
 function solution(list){
-let seqmap = []
-
-    for (let i = 0; i < list.length; i++) {
-        if (list[i]+1 === list[i+1]) {
-            seqmap.push({
-                c: list[i],
-                m: 's'
-            })
-            
-
-        } else {
-            seqmap.push({
-                c: list[i],
-                m: 'i'
-            })
-        }
+const result = []
+let j = list[0]
+    for (i in list){
+        // if (list[i+1] )
+        // createRange(list[i])
+        
+        console.log(i, j, list[i])
+        
+        j++
     }
 
-    console.log(seqmap[1])
-
-    for (let j=0; j < seqmap.length; j++){
-        // console.log(seqmap[j])
-        if (seqmap[j].m === 'i'){
-            console.log(seqmap[j].c)
-        }
-    }
-
-    // console.log(seqmap);
-
-    return 0
-
-
+return 0
 
 
 }
 // "-6,-3-1,3-5,7-11,14,15,17-20")
 
-   console.log(solution([-6, -3, -2, -1, 0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 14, 15, 17, 18, 19, 20]))
+console.clear()
+console.log(solution([-6, -3, -2, -1, 0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 14, 15, 17, 18, 19, 20]))
 
 
 
