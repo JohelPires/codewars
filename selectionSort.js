@@ -1,5 +1,6 @@
-function selectionSort(arr){
+function selectionSort(array){
     
+    arr = [...array]
     for (let i = 0; i < arr.length - 1; i++){
         let minIndex = i
         for (let j = i; j < arr.length; j++){
@@ -7,9 +8,9 @@ function selectionSort(arr){
                 minIndex = j
             } 
         }
-        const temp = arr[i]
-        arr[i]=arr[minIndex]
-        arr[minIndex]=temp
+
+        [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]]
+        
     }
     return arr
 }
