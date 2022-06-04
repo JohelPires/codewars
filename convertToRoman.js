@@ -16,10 +16,10 @@
 function convertToRoman(num) {
 
     const arr = num.toString().split('')
-    const unid = [0, 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']
-    const dezenas = [0, 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC', 'C']
-    const cent = [0, 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM', 'M']
-    const mil = [0, 'M', 'MM', 'MMM', ]//'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM', 'M']
+    const unid = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']
+    const dezenas = ['', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC', 'C']
+    const cent = ['', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM', 'M']
+    const mil = ['', 'M', 'MM', 'MMM', ]//'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM', 'M']
 
     switch (arr.length) {
         case 1:
@@ -44,4 +44,4 @@ function convertToRoman(num) {
     return result;
 }
    
-   console.log(convertToRoman(635))
+   console.log(convertToRoman(600))
