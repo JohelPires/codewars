@@ -6,7 +6,7 @@ function countChar(str) {
     const char = str[i].toLowerCase()
     if (char in result) {
       result[char] += 1
-    } else {
+    } else if (/[a-z\d]/.test(char)) {
       result[char] = 1
     }
   }
@@ -19,7 +19,7 @@ function countChar(str) {
 
 console.log(countChar('aaaa'))
 // {a: 4}
-console.log(countChar('Your PIN number is 1234'))
+console.log(countChar('Your PIN number is 1234!'))
 // {
 //    y: 1,
 //    o: 1,
