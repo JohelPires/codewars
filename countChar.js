@@ -22,6 +22,7 @@ function countChar(str) {
   const result = {}
 
   for (let char of str) {
+    char = char.toLowerCase()
     if (char in result) {
       result[char]++
     } else if (/[a-z\d]/.test(char)) {
