@@ -1,74 +1,13 @@
 function snail(array) {
-  const d = array[0].length //dimension
-  let steps = d - 1
-  console.log(d, steps)
-  let row = 0
-  let col = d - 1
-  const result = []
+  const topLeft = [0, 0]
+  const d = array[0].length - 1
+  const bottomRight = [array[0].length, array[0].length]
 
-  function moveRight(steps) {
-    for (let i = 0; i <= steps; i++) {
-      result.push(array[row][i])
-    }
-  }
-  function moveDown(steps) {
-    for (let i = 0; i <= steps; i++) {
-      result.push(array[i][col])
-    }
-  }
+  let result = [...array[0]]
 
-  moveRight(steps)
-  moveDown(steps)
-
+  array[d].reverse().map((item) => result.push(item))
   return result
 }
-
-// Given an n x n array, return the array elements arranged from outermost elements to the middle element, traveling clockwise.
-
-// array = [[1,2,3],
-//          [4,5,6],
-//          [7,8,9]]
-// snail(array) #=> [1,2,3,6,9,8,7,4,5]
-
-// function snail(array) {
-//   let dir = 'right' // direção de leitura
-//   let n = array[0].length
-//   let row = 0
-//   const result = []
-
-//   switch (dir) {
-//     case 'right':
-//       for (let i = 0; i < n; i++) {
-//         result.push(array[row][i])
-//       }
-//       dir = 'down'
-//     // n = n - 1
-//     // break
-//     case 'down':
-//       for (let i = 1; i <= n; i++) {
-//         result.push(array[i][n - 1])
-//       }
-//       dir = 'left'
-//       n = n - 1
-//       break
-
-//     default:
-//       break
-//   }
-
-// for (let i = 0; i <= n; i++) {
-//   switch (dir) {
-//     case 'left':
-//       result.push(array[n][i])
-//       break
-
-//     default:
-//       break
-//   }
-// }
-
-//   console.log(result)
-// }
 
 console.log(
   snail([
@@ -77,6 +16,7 @@ console.log(
     [7, 8, 9],
   ])
 )
+//should return [1,2,3,6,9,8,7,4,5]
 
 //   1 2 3
 //   4 5 6
