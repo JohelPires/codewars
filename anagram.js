@@ -14,7 +14,7 @@ function anagram(str1, str2) {
   }
   console.log(fCounter1)
   console.log(fCounter2)
-  for (let key of fCounter1) {
+  for (let key in fCounter1) {
     if (fCounter1[key] !== fCounter2[key]) {
       return false
     }
