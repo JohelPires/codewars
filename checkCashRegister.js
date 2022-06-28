@@ -14,27 +14,50 @@ function checkCashRegister(price, cash, cid) {
 
   // amount due =======
   let due = cash - price
+  let notas
 
   // Verifica qual o troco máximo possível
 
-  if (due > hundred) {
-    due = (due - hundred).toFixed(2)
-    change.push(['HUNDRED', hundred])
-  }
+  //   if (hundred / 100 > (due / 100).toFixed(2)) {
+  notas = Math.floor((due / 100).toFixed(2))
+  console.log('notas de 100: ' + notas)
+  due = (due - notas * 100).toFixed(2)
   console.log(due)
-  if (due > twenty) {
-    due = (due - twenty).toFixed(2)
-    change.push(['TWENTY', twenty])
-  }
+  change.push(['HUNDRED', notas * 100])
+  //   }
+
   console.log(due)
-  if (due > ten) {
-    due = (due - ten).toFixed(2)
-    change.push(['TEN', ten])
-  }
+
+  // TWENTY:
+  notas = Math.floor((due / 20).toFixed(2))
+  console.log('notas de 20: ' + notas)
+  due = (due - notas * 20).toFixed(2)
   console.log(due)
-  if (due > five) {
-    due = (due - five).toFixed(2)
-    change.push(['FIVE', five])
+  change.push(['TWENTY', notas * 20])
+
+  //   if (due > twenty) {
+  //     due = (due - twenty).toFixed(2)
+  //     change.push(['TWENTY', twenty])
+  //   }
+  console.log(due)
+
+  notas = Math.floor((due / 10).toFixed(2))
+  console.log('notas de 10: ' + notas)
+  due = (due - notas * 10).toFixed(2)
+  console.log(due)
+  change.push(['TEN', notas * 10])
+
+  //   if (due > ten) {
+  //     due = (due - ten).toFixed(2)
+  //     change.push(['TEN', ten])
+  //   }
+  console.log(due)
+  if (five / 5 > (due / 5).toFixed(2)) {
+    const notas = Math.floor((due / 5).toFixed(2))
+    console.log('notas de 5: ' + notas)
+    due = (due - notas * 5).toFixed(2)
+    console.log(due)
+    change.push(['FIVE', notas * 5])
   }
   console.log(due)
   if (due > one) {
@@ -78,20 +101,19 @@ console.log(
     ['TWENTY', 60],
     ['ONE HUNDRED', 100],
   ])
-)
+) /
+  // should return {status: "OPEN", change: [["QUARTER", 0.5]]}.
 
-// should return {status: "OPEN", change: [["QUARTER", 0.5]]}.
-
-console.log(
-  checkCashRegister(3.26, 100, [
-    ['PENNY', 1.01],
-    ['NICKEL', 2.05],
-    ['DIME', 3.1],
-    ['QUARTER', 4.25],
-    ['ONE', 90],
-    ['FIVE', 55],
-    ['TEN', 20],
-    ['TWENTY', 60],
-    ['ONE HUNDRED', 100],
-  ])
-) //should return {status: "OPEN", change: [["TWENTY", 60], ["TEN", 20], ["FIVE", 15], ["ONE", 1], ["QUARTER", 0.5], ["DIME", 0.2], ["PENNY", 0.04]]}.
+  console.log(
+    checkCashRegister(3.26, 100, [
+      ['PENNY', 1.01],
+      ['NICKEL', 2.05],
+      ['DIME', 3.1],
+      ['QUARTER', 4.25],
+      ['ONE', 90],
+      ['FIVE', 55],
+      ['TEN', 20],
+      ['TWENTY', 60],
+      ['ONE HUNDRED', 100],
+    ])
+  ) //should return {status: "OPEN", change: [["TWENTY", 60], ["TEN", 20], ["FIVE", 15], ["ONE", 1], ["QUARTER", 0.5], ["DIME", 0.2], ["PENNY", 0.04]]}.
