@@ -10,83 +10,144 @@ function checkCashRegister(price, cash, cid) {
   const ten = cid[6][1]
   const twenty = cid[7][1]
   const hundred = cid[8][1]
-  console.log(penny, nickel, dime, quarter, one, five, ten, twenty, hundred)
+  const totalInRegister = (
+    penny +
+    nickel +
+    dime +
+    quarter +
+    one +
+    five +
+    ten +
+    twenty +
+    hundred
+  ).toFixed(2)
 
   // amount due =======
   let due = cash - price
-  let notas
+  let result = {}
+  if (totalInRegister < due) {
+    result.status = 'INSUFICIENT_FUNDS'
+    result.change = []
+    return result
+  }
+  if (totalInRegister === due) {
+    result.status = 'CLOSED'
+  }
+  if (totalInRegister > due) {
+    result.status = 'OPEN'
+  }
 
   // Verifica qual o troco máximo possível
 
-  //   if (hundred / 100 > (due / 100).toFixed(2)) {
-  notas = Math.floor((due / 100).toFixed(2))
-  console.log('notas de 100: ' + notas)
-  due = (due - notas * 100).toFixed(2)
-  console.log(due)
-  change.push(['HUNDRED', notas * 100])
-  //   }
-
-  console.log(due)
-
-  // TWENTY:
-  notas = Math.floor((due / 20).toFixed(2))
-  console.log('notas de 20: ' + notas)
-  due = (due - notas * 20).toFixed(2)
-  console.log(due)
-  change.push(['TWENTY', notas * 20])
-
-  //   if (due > twenty) {
-  //     due = (due - twenty).toFixed(2)
-  //     change.push(['TWENTY', twenty])
-  //   }
-  console.log(due)
-
-  notas = Math.floor((due / 10).toFixed(2))
-  console.log('notas de 10: ' + notas)
-  due = (due - notas * 10).toFixed(2)
-  console.log(due)
-  change.push(['TEN', notas * 10])
-
-  //   if (due > ten) {
-  //     due = (due - ten).toFixed(2)
-  //     change.push(['TEN', ten])
-  //   }
-  console.log(due)
-  if (five / 5 > (due / 5).toFixed(2)) {
-    const notas = Math.floor((due / 5).toFixed(2))
-    console.log('notas de 5: ' + notas)
-    due = (due - notas * 5).toFixed(2)
-    console.log(due)
-    change.push(['FIVE', notas * 5])
+  if (due > 100 && hundred > 100) {
+    const requiredBills = Math.floor(due / 100)
+    const availableBills = hundred / 100
+    if (availableBills > requiredBills) {
+      due = (due - requiredBills * 100).toFixed(2)
+      change.push(['HUNDRED', requiredBills * 100])
+    } else {
+      due = (due - hundred).toFixed(2)
+      change.push(['HUNDRED', hundred])
+    }
   }
-  console.log(due)
-  if (due > one) {
-    due = (due - one).toFixed(2)
-    change.push(['one', one])
-  }
-  console.log(due)
-  if (due > quarter) {
-    due = (due - quarter).toFixed(2)
-    change.push(['quarter', quarter])
-  }
-  console.log(due)
-  if (due > dime) {
-    due = (due - dime).toFixed(2)
-    change.push(['dime', dime])
-  }
-  console.log(due)
-  if (due > nickel) {
-    due = (due - nickel).toFixed(2)
-    change.push(['nickel', nickel])
-  }
-  console.log(due)
-  if (due > penny) {
-    due = (due - penny).toFixed(2)
-    change.push(['penny', penny])
-  }
-  console.log(due)
 
-  return change
+  if (due > 20 && twenty > 20) {
+    const requiredBills = Math.floor(due / 20)
+    const availableBills = twenty / 20
+    if (availableBills > requiredBills) {
+      due = (due - requiredBills * 20).toFixed(2)
+      change.push(['TWENTY', requiredBills * 20])
+    } else {
+      due = (due - twenty).toFixed(2)
+      change.push(['TWENTY', twenty])
+    }
+  }
+
+  if (due > 10 && ten > 10) {
+    const requiredBills = Math.floor(due / 10)
+    const availableBills = ten / 10
+    if (availableBills > requiredBills) {
+      due = (due - requiredBills * 10).toFixed(2)
+      change.push(['TEN', requiredBills * 10])
+    } else {
+      due = (due - ten).toFixed(2)
+      change.push(['TEN', ten])
+    }
+  }
+
+  if (due > 5 && five > 5) {
+    const requiredBills = Math.floor(due / 5)
+    const availableBills = five / 5
+    if (availableBills > requiredBills) {
+      due = (due - requiredBills * 5).toFixed(2)
+      change.push(['FIVE', requiredBills * 5])
+    } else {
+      due = (due - five).toFixed(2)
+      change.push(['FIVE', five])
+    }
+  }
+
+  if (due > 1 && one > 1) {
+    const requiredBills = Math.floor(due / 1)
+    const availableBills = one / 1
+    if (availableBills > requiredBills) {
+      due = (due - requiredBills * 1).toFixed(2)
+      change.push(['ONE', requiredBills * 1])
+    } else {
+      due = (due - one).toFixed(2)
+      change.push(['ONE', one])
+    }
+  }
+
+  if (due > 0.25 && quarter > 0.25) {
+    const requiredBills = Math.floor(due / 0.25)
+    const availableBills = quarter / 0.25
+    if (availableBills > requiredBills) {
+      due = (due - requiredBills * 0.25).toFixed(2)
+      change.push(['QUARTER', requiredBills * 0.25])
+    } else {
+      due = (due - quarter).toFixed(2)
+      change.push(['QUARTER', quarter])
+    }
+  }
+
+  if (due > 0.1 && dime > 0.1) {
+    const requiredBills = Math.floor(due / 0.1)
+    const availableBills = dime / 0.1
+    if (availableBills > requiredBills) {
+      due = (due - requiredBills * 0.1).toFixed(2)
+      change.push(['DIME', requiredBills * 0.1])
+    } else {
+      due = (due - dime).toFixed(2)
+      change.push(['DIME', dime])
+    }
+  }
+
+  if (due > 0.05 && nickel > 0.05) {
+    const requiredBills = Math.floor(due / 0.05)
+    const availableBills = nickel / 0.05
+    if (availableBills > requiredBills) {
+      due = (due - requiredBills * 0.05).toFixed(2)
+      change.push(['NICKEL', requiredBills * 0.05])
+    } else {
+      due = (due - nickel).toFixed(2)
+      change.push(['NICKEL', nickel])
+    }
+  }
+
+  if (due > 0.01 && penny > 0.01) {
+    const requiredBills = Math.floor(due / 0.01)
+    const availableBills = penny / 0.01
+    if (availableBills > requiredBills) {
+      due = (due - requiredBills * 0.01).toFixed(2)
+      change.push(['PENNY'.toUpperCase(), requiredBills * 0.01])
+    } else {
+      due = (due - penny).toFixed(2)
+      change.push(['PENNY'.toUpperCase(), penny])
+    }
+  }
+  result.change = change
+  return result
 }
 
 console.log(
