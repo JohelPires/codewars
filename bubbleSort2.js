@@ -1,9 +1,15 @@
 function bbSort(arr) {
+  let noSwaps
   for (let i = arr.length - 1; i >= 0; i--) {
+    noSwaps = true
     for (let j = 0; j < i; j++) {
       console.log(arr, arr[j], arr[j + 1])
-      if (arr[j] > arr[j + 1]) [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]
+      if (arr[j] > arr[j + 1]) {
+        ;[arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]
+        noSwaps = false
+      }
     }
+    if (noSwaps) break
   }
   return arr
 }
@@ -21,4 +27,4 @@ const array = [
 
 const array2 = [6138, 5696, 2459, 4218, 465]
 
-console.log(bbSort(array2))
+console.log(bbSort(array))
