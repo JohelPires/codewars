@@ -1,13 +1,11 @@
-function bbSort(array) {
-  for (i = array.length - 1; i >= 0; i--) {
-    console.log(i)
-    for (j = 0; j < i; j++) {
-      console.log(j)
-      if (array[j] > array[j + 1])
-        [array[j], array[j + 1]] = [array[j + 1], array[j]]
+function bbSort(arr) {
+  for (let i = arr.length - 1; i >= 0; i--) {
+    for (let j = 0; j < i; j++) {
+      console.log(arr, arr[j], arr[j + 1])
+      if (arr[j] > arr[j + 1]) [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]
     }
   }
-  return array
+  return arr
 }
 
 const array = [
@@ -23,4 +21,4 @@ const array = [
 
 const array2 = [6138, 5696, 2459, 4218, 465]
 
-console.log(bbSort(array))
+console.log(bbSort(array2))
