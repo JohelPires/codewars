@@ -14,20 +14,24 @@ function bbSort(arr) {
   return arr
 }
 
-// function selectionSort(arr) {
-//   let firstIdx = 0
+const array3 = [5, 3, 4, 1, 2]
 
-//   for (let i = 0; i < arr.length; i++) {
-//     let firstEl = arr[firstIdx]
-//     for (let j = firstIdx + 1; j < arr.length; j++) {
-//       if (arr[j] < firstEl) firstEl = arr[j]
-//     }
-//     // swap firstEl with arr[firstIdx]
-//     ;[arr[firstIdx], firstEl] = [firstEl, arr[firstIdx]]
-//     firstIdx++
-//   }
-//   return arr
-// }
+// function swap(arr, a, b)
+
+function insertionSort(arr) {
+  // const left =
+
+  for (let i = 1; i < arr.length; i++) {
+    let current = arr[i]
+    for (var j = i - 1; j >= 0 && arr[j] > current; j--) {
+      arr[j + 1] = arr[j]
+    }
+    arr[j + 1] = current
+    console.log(arr)
+  }
+
+  return arr
+}
 
 function selectionSort(arr) {
   for (let i = 0; i < arr.length; i++) {
@@ -62,4 +66,4 @@ const array = [
   8505, 664, 8219, 9258, 7062, 3622, 310, 1358, 3665,
 ]
 
-console.log(selectionSort(array))
+console.log(insertionSort(array2))
