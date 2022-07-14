@@ -1,25 +1,21 @@
 function sym(args) {
   const n = arguments.length
   const intersection = []
-  const union = []
+  const union = [...arguments[0], ...arguments[1]]
   const symDiff = []
 
-  console.log('___________________________')
-  for (let i = 0; i < n; i++) {
-    console.log(arguments[i])
-    //UNION:
+  //UNION:
 
-    arguments[i].forEach((e) => {
-      if (!union.includes(e)) union.push(e)
-    })
+  // arguments[0].forEach((e) => {
+  //   if (!union.includes(e)) union.push(e)
+  // })
 
-    //INTERSECTION:
-    arguments[0].forEach((e) => {
-      if (arguments[1].includes(e)) {
-        intersection.push(e)
-      }
-    })
-  }
+  //INTERSECTION:
+  arguments[0].forEach((e) => {
+    if (arguments[1].includes(e)) {
+      intersection.push(e)
+    }
+  })
 
   const unionNoDuplicates = union
     .filter((e, i) => union.indexOf(e) === i)
@@ -32,6 +28,8 @@ function sym(args) {
   unionNoDuplicates.forEach((e) => {
     if (!intersecNoDuplicates.includes(e)) symDiff.push(e)
   })
+
+  // Agora eu tenho que fazer uma recursion para pegar o resultado dos dois primeiros arrays e calcular a symDiff com o próximo array
 
   console.log('---UNION:')
   console.log(unionNoDuplicates)
