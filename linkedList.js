@@ -24,6 +24,23 @@ class SinglyLinkedList {
     this.length++
     return this
   }
+
+  pop() {
+    if (!this.head) return undefined
+    let secondToLast = this.head
+    for (let i = 0; i < this.length - 2; i++) {
+      secondToLast = secondToLast.next
+    }
+    secondToLast.next = null
+  }
+
+  traverse() {
+    let current = this.head
+    while (current) {
+      console.log(current.val)
+      current = current.next
+    }
+  }
 }
 
 const list = new SinglyLinkedList()
@@ -36,3 +53,8 @@ list.push('blah2')
 list.push('inf2')
 
 // console.log(list)
+list.traverse()
+console.log('====================')
+list.pop()
+console.log('====================')
+list.traverse()
