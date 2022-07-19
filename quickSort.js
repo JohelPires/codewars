@@ -17,6 +17,19 @@ function pivot(arr, start = 0, end = arr.length + 1) {
   return pivotIndex
 }
 
+function quickSort(arr, left = 0, right = arr.length - 1) {
+  if (left < right) {
+    let pivotIndex = pivot(arr, left, right)
+
+    //left:
+    quickSort(arr, left, pivotIndex - 1)
+
+    //right:
+    quickSort(arr, pivotIndex + 1, right)
+  }
+  return arr
+}
+
 const array = [61, 56, 24, 42, 4, 49, 29, 18, 62, 38, 89, 44, 5]
 const array2 = [4, 8, 2, 1, 5, 7, 6, 3] //should return 3
 
@@ -24,4 +37,4 @@ const array2 = [4, 8, 2, 1, 5, 7, 6, 3] //should return 3
 
 //   56        61           7
 
-console.log(pivot(array2), array2)
+console.log(quickSort(array))
