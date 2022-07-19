@@ -27,11 +27,22 @@ class SinglyLinkedList {
 
   pop() {
     if (!this.head) return undefined
+    if (this.length === 1) {
+      let temp = this.head
+      this.length = 0
+      this.head = null
+      this.tail = null
+      return temp
+    }
     let secondToLast = this.head
     for (let i = 0; i < this.length - 2; i++) {
       secondToLast = secondToLast.next
     }
     secondToLast.next = null
+    const poppedItem = this.tail
+    this.tail = secondToLast
+    this.length--
+    return poppedItem
   }
 
   traverse() {
@@ -46,15 +57,10 @@ class SinglyLinkedList {
 const list = new SinglyLinkedList()
 
 list.push('teste')
-list.push('blah')
-list.push('inf')
-list.push('teste2')
-list.push('blah2')
-list.push('inf2')
 
 // console.log(list)
 list.traverse()
 console.log('====================')
-list.pop()
+console.log(list.pop())
 console.log('====================')
 list.traverse()
