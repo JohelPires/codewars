@@ -5,6 +5,34 @@ class Node {
   }
 }
 
-const first = new Node(1)
+class SinglyLinkedList {
+  constructor() {
+    this.length = 0
+    this.head = null
+    this.tail = null
+  }
 
-console.log(first)
+  push(val) {
+    const newNode = new Node(val)
+    if (!this.head) {
+      this.head = newNode
+      this.tail = newNode
+    } else {
+      this.tail.next = newNode
+      this.tail = newNode
+    }
+    this.length++
+    return this
+  }
+}
+
+const list = new SinglyLinkedList()
+
+list.push('teste')
+list.push('blah')
+list.push('inf')
+list.push('teste2')
+list.push('blah2')
+list.push('inf2')
+
+// console.log(list)
