@@ -23,7 +23,16 @@ function PriorityQueue() {
     }
   }
   this.dequeue = function () {
-    this.collection.pop()
+    return this.collection.shift()[0]
+  }
+  this.size = function () {
+    return this.collection.length
+  }
+  this.front = function () {
+    return this.collection[0][0]
+  }
+  this.isEmpty = function () {
+    return this.collection.length === 0
   }
 }
 
@@ -35,5 +44,13 @@ teste.enqueue(['t', 2])
 teste.enqueue(['c', 2])
 teste.enqueue(['x', 3])
 teste.enqueue(['z', 1])
-// teste.enqueue(['b', 1])
+teste.enqueue(['b', 1])
+teste.enqueue(['sdfasb', 4])
+teste.enqueue(['asdfb', 7])
+teste.enqueue(['badasdf', 5])
+teste.enqueue(['qwerb', 1])
+
+teste.printCollection()
+console.log(teste.front())
+console.log(teste.dequeue())
 teste.printCollection()
