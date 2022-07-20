@@ -70,6 +70,17 @@ class SinglyLinkedList {
     return this
   }
 
+  get(idx) {
+    if (idx > this.length) return -1
+
+    let result = this.head
+    if (idx === 0) return result
+    for (let i = 1; i <= idx; i++) {
+      result = result.next
+    }
+    return result
+  }
+
   traverse() {
     if (!this.head) return undefined
     let current = this.head
@@ -94,4 +105,4 @@ list.traverse()
 console.log('====================')
 console.log(list.unshift('first element'))
 console.log('====================')
-list.traverse()
+console.log(list.get(0).val)
