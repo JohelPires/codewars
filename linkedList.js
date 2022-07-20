@@ -123,13 +123,35 @@ class SinglyLinkedList {
     return removed
   }
 
+  //        a ->  b -> c -> d -> null
+  //prev   cur   next
+
+  //null <- a     b -> c -> d -> null
+  //      prev   cur   next
+  reverse() {
+    let prev = null
+    let current = this.head
+    this.head = this.tail
+    this.tail = current
+
+    while (current) {
+      const next = current.next
+      current.next = prev
+      prev = current
+      current = next
+    }
+    return this
+  }
+
   traverse() {
     if (!this.head) return undefined
     let current = this.head
+    const arrayOfVals = []
     while (current) {
-      console.log(current.val)
+      arrayOfVals.push(current.val)
       current = current.next
     }
+    console.log(arrayOfVals)
   }
 }
 
@@ -144,7 +166,8 @@ list.push('asdafs')
 
 // console.log(list)
 list.traverse()
-console.log('====================')
-console.log(list.remove(3))
-console.log('====================')
+// console.log('====================')
+// console.log(list.remove(3))
+console.log('REVERSE ====================')
+list.reverse()
 list.traverse()
