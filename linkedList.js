@@ -46,6 +46,7 @@ class SinglyLinkedList {
   }
 
   shift() {
+    if (!this.head) return undefined
     const oldHead = this.head
     if (this.length === 1) {
       let temp = this.head
@@ -57,6 +58,16 @@ class SinglyLinkedList {
     this.head = oldHead.next
     this.length--
     return oldHead
+  }
+
+  unshift(val) {
+    if (!this.head) return this.push(val)
+    const newNode = new Node(val)
+    const oldHead = this.head
+    this.head = newNode
+    this.head.next = oldHead
+    this.length++
+    return this
   }
 
   traverse() {
@@ -81,6 +92,6 @@ list.push(12312)
 // console.log(list)
 list.traverse()
 console.log('====================')
-console.log(list.shift())
+console.log(list.unshift('first element'))
 console.log('====================')
 list.traverse()
