@@ -92,6 +92,10 @@ class SinglyLinkedList {
 
   insert(val, idx) {
     if (idx > this.length || idx < 0) return false
+    if (idx === this.length) {
+      this.push(val)
+      return true
+    }
     if (idx === 0) {
       this.unshift(val)
       return true
@@ -107,6 +111,18 @@ class SinglyLinkedList {
     return true
   }
 
+  remove(idx) {
+    if (idx > this.length || idx < 0) return undefined
+    if (idx === this.length - 1) return this.pop()
+    if (idx === 0) return this.shift(val)
+    const prev = this.get(idx - 1)
+    const removed = prev.next.val
+    const after = prev.next.next
+    prev.next = after
+    this.length--
+    return removed
+  }
+
   traverse() {
     if (!this.head) return undefined
     let current = this.head
@@ -120,16 +136,15 @@ class SinglyLinkedList {
 const list = new SinglyLinkedList()
 
 list.push('teste')
-list.push(234)
-list.push(12342)
-list.push(122)
-list.push(1342)
-list.push(12312)
+list.push('item 2')
+list.push('item 3')
+list.push('tse')
+list.push('asdf')
+list.push('asdafs')
 
-console.log(list)
+// console.log(list)
 list.traverse()
 console.log('====================')
-console.log(list.unshift('first element'))
+console.log(list.remove(3))
 console.log('====================')
-console.log(list.insert('added value', 4))
 list.traverse()
