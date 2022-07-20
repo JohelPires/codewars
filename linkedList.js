@@ -45,7 +45,22 @@ class SinglyLinkedList {
     return poppedItem
   }
 
+  shift() {
+    const oldHead = this.head
+    if (this.length === 1) {
+      let temp = this.head
+      this.length = 0
+      this.head = null
+      this.tail = null
+      return temp
+    }
+    this.head = oldHead.next
+    this.length--
+    return oldHead
+  }
+
   traverse() {
+    if (!this.head) return undefined
     let current = this.head
     while (current) {
       console.log(current.val)
@@ -57,10 +72,15 @@ class SinglyLinkedList {
 const list = new SinglyLinkedList()
 
 list.push('teste')
+list.push(234)
+list.push(12342)
+list.push(122)
+list.push(1342)
+list.push(12312)
 
 // console.log(list)
 list.traverse()
 console.log('====================')
-console.log(list.pop())
+console.log(list.shift())
 console.log('====================')
 list.traverse()
