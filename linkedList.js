@@ -71,7 +71,7 @@ class SinglyLinkedList {
   }
 
   get(idx) {
-    if (idx > this.length) return -1
+    if (idx > this.length || idx < 0) return null
 
     let result = this.head
     if (idx === 0) return result
@@ -79,6 +79,15 @@ class SinglyLinkedList {
       result = result.next
     }
     return result
+  }
+
+  set(val, idx) {
+    let nodeToUpdate = this.get(idx)
+    if (nodeToUpdate) {
+      nodeToUpdate.val = val
+      return true
+    }
+    return false
   }
 
   traverse() {
@@ -105,4 +114,5 @@ list.traverse()
 console.log('====================')
 console.log(list.unshift('first element'))
 console.log('====================')
-console.log(list.get(0).val)
+console.log(list.set('added value', 3))
+list.traverse()
