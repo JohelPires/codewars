@@ -90,6 +90,23 @@ class SinglyLinkedList {
     return false
   }
 
+  insert(val, idx) {
+    if (idx > this.length || idx < 0) return false
+    if (idx === 0) {
+      this.unshift(val)
+      return true
+    }
+    const newNode = new Node(val)
+    const placeToIns = this.get(idx)
+    if (this.length > 1) {
+      const beforeNode = this.get(idx - 1)
+      beforeNode.next = newNode
+    }
+    newNode.next = placeToIns
+    this.length++
+    return true
+  }
+
   traverse() {
     if (!this.head) return undefined
     let current = this.head
@@ -109,10 +126,10 @@ list.push(122)
 list.push(1342)
 list.push(12312)
 
-// console.log(list)
+console.log(list)
 list.traverse()
 console.log('====================')
 console.log(list.unshift('first element'))
 console.log('====================')
-console.log(list.set('added value', 3))
+console.log(list.insert('added value', 4))
 list.traverse()
