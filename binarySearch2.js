@@ -1,9 +1,13 @@
 function binarySearch(array, value) {
   let left = 0
-  let right = array.length
+  let right = array.length - 1
 
   while (left < right) {
     const mid = Math.floor((right + left) / 2)
+    console.table(
+      `${left}: ${array[left]}, ${mid}: ${array[mid]}, ${right}: ${array[right]}`
+    )
+
     if (array[mid] > value) {
       right = mid - 1
     } else if (array[mid] < value) {
@@ -20,4 +24,4 @@ const array = [
   44, 45, 57, 48, 49, 50,
 ]
 
-console.log(binarySearch(array, 34))
+console.log(binarySearch(array, 70))

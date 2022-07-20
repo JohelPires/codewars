@@ -42,4 +42,6 @@ const array = [
   8505, 664, 8219, 9258, 7062, 3622, 310, 1358, 3665,
 ]
 
-console.log(mergeSort(array))
+const array2 = [10, 4, 19, 12]
+
+console.log(mergeSort(array2))
