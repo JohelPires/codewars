@@ -47,6 +47,21 @@ class DoublyLinkedList {
     return currentTail
   }
 
+  shift() {
+    if (this.length === 0) return undefined
+    const currentHead = this.head
+    if (this.length === 1) {
+      this.head = null
+      this.tail = null
+      this.length = 0
+      return currentHead
+    }
+    this.head = this.head.next
+    this.head.prev = null
+    this.length--
+    return currentHead
+  }
+
   traverse() {
     let current = this.head
     let str = ' NULL <=> '
@@ -70,5 +85,5 @@ dllist.push('555')
 
 dllist.traverse()
 
-dllist.pop()
+dllist.shift()
 dllist.traverse()
