@@ -73,7 +73,7 @@ class DoublyLinkedList {
 
   get(idx) {
     if (idx > this.length - 1 || idx < 0) return null
-    if (this.length === 1 || idx === this.length - 1) return this.tail
+    // if (this.length === 1 || idx === this.length - 1) return this.tail
     let result
     if (this.length / 2 > idx) {
       //iterate from the beggining
@@ -89,6 +89,23 @@ class DoublyLinkedList {
       }
     }
     return result
+  }
+
+  set(val, idx) {
+    if (idx > this.length - 1 || idx < 0) return null
+    let oldNode
+    if (this.length / 2 > idx) {
+      oldNode = this.head
+      for (let i = 1; i <= idx; i++) {
+        oldNode = oldNode.next
+      }
+    } else {
+      oldNode = this.tail
+      for (let i = this.length - 2; i >= idx; i--) {
+        oldNode = oldNode.prev
+      }
+    }
+    oldNode.val = val
   }
 
   traverse() {
@@ -116,5 +133,6 @@ dllist.traverse()
 
 dllist.shift()
 dllist.unshift('new First')
+dllist.set('new Second', 0)
 dllist.traverse()
-console.log(dllist.get(5))
+console.log(dllist.get(0).val)
