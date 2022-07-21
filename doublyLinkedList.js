@@ -18,7 +18,6 @@ class DoublyLinkedList {
     const newNode = new Node(val)
     if (!this.head) {
       this.head = newNode
-
       this.tail = newNode
       this.length++
       return this
@@ -32,6 +31,16 @@ class DoublyLinkedList {
     return this
   }
 
+  unshift(val) {
+    if (this.length === 0) return push(val)
+    const newNode = new Node(val)
+    const oldHead = this.head
+    this.head = newNode
+    this.head.next = oldHead
+    oldHead.prev = this.head
+    this.length++
+    return this
+  }
   pop() {
     if (this.length === 0) return undefined
     const currentTail = this.tail
@@ -86,4 +95,5 @@ dllist.push('555')
 dllist.traverse()
 
 dllist.shift()
+dllist.unshift('new First')
 dllist.traverse()
