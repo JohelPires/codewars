@@ -142,6 +142,25 @@ class DoublyLinkedList {
     return this
   }
 
+  remove(idx) {
+    if (idx < 0 || idx >= this.length) return false
+    if (idx === 0) {
+      this.shift()
+      return true
+    }
+    if (idx === this.length - 1) {
+      this.pop()
+      return true
+    }
+    let nodeToRemove = this.get(idx)
+    let prevNode = nodeToRemove.prev
+    let nextNode = nodeToRemove.next
+    prevNode.next = nextNode
+    nextNode.prev = prevNode
+    this.length--
+    return true
+  }
+
   traverse() {
     let current = this.head
     let str = ' NULL <=> '
@@ -162,10 +181,16 @@ dllist.push('second item')
 dllist.push('third item')
 dllist.push('4item')
 dllist.push('555')
+dllist.push('seis')
+dllist.push(7)
+dllist.push(['oito', 8, '888'])
+dllist.push('nove')
+dllist.push('X')
 
 dllist.traverse()
 
-dllist.shift()
-dllist.unshift('new First')
+dllist.set('first item', 0)
+// dllist.unshift('new First')
+dllist.remove(8)
 dllist.traverse()
 console.log(dllist.get(0).val)
