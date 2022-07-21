@@ -91,21 +91,30 @@ class DoublyLinkedList {
     return result
   }
 
+  //   set(val, idx) {
+  //     if (idx > this.length - 1 || idx < 0) return null
+  //     let oldNode
+  //     if (this.length / 2 > idx) {
+  //       oldNode = this.head
+  //       for (let i = 1; i <= idx; i++) {
+  //         oldNode = oldNode.next
+  //       }
+  //     } else {
+  //       oldNode = this.tail
+  //       for (let i = this.length - 2; i >= idx; i--) {
+  //         oldNode = oldNode.prev
+  //       }
+  //     }
+  //     oldNode.val = val
+  //   }
+
   set(val, idx) {
-    if (idx > this.length - 1 || idx < 0) return null
-    let oldNode
-    if (this.length / 2 > idx) {
-      oldNode = this.head
-      for (let i = 1; i <= idx; i++) {
-        oldNode = oldNode.next
-      }
-    } else {
-      oldNode = this.tail
-      for (let i = this.length - 2; i >= idx; i--) {
-        oldNode = oldNode.prev
-      }
+    let nodeToSet = this.get(idx)
+    if (nodeToSet) {
+      nodeToSet.val = val
+      return true
     }
-    oldNode.val = val
+    return false
   }
 
   traverse() {
@@ -133,6 +142,6 @@ dllist.traverse()
 
 dllist.shift()
 dllist.unshift('new First')
-dllist.set('new Second', 0)
+console.log(dllist.set('new Second', 1))
 dllist.traverse()
 console.log(dllist.get(0).val)
