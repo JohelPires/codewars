@@ -117,6 +117,31 @@ class DoublyLinkedList {
     return false
   }
 
+  insert(val, idx) {
+    if (idx >= this.length || idx < 0) return null
+    if (idx === 0) {
+      this.unshift(val)
+      return this
+    }
+    if (idx === this.length - 1) {
+      this.push(val)
+      return this
+    }
+    const newNode = new Node(val)
+
+    const oldNode = this.get(idx)
+    const prevNode = oldNode.prev
+    const nextNode = oldNode.next
+
+    oldNode.prev = newNode
+    prevNode.next = newNode
+    newNode.prev = prevNode
+    newNode.next = oldNode
+
+    this.length++
+    return this
+  }
+
   traverse() {
     let current = this.head
     let str = ' NULL <=> '
@@ -142,6 +167,5 @@ dllist.traverse()
 
 dllist.shift()
 dllist.unshift('new First')
-console.log(dllist.set('new Second', 1))
 dllist.traverse()
 console.log(dllist.get(0).val)
