@@ -1,3 +1,5 @@
+import Queue from './queueClass.js'
+
 class Node {
   constructor(val) {
     this.val = val
@@ -51,6 +53,62 @@ class BinarySearchTree {
     }
     return false
   }
+
+  // traverse using Breadth-First Search algorithm
+  traverse() {
+    const q = []
+    const data = []
+    q.push(this.root)
+    while (q.length) {
+      const dequeued = q.pop()
+      // console.log('dequeued: ' + dequeued.val)
+      data.push(dequeued.val)
+      if (dequeued.left) q.push(dequeued.left)
+      if (dequeued.right) q.push(dequeued.right)
+      // console.log(q)
+    }
+    return data
+  }
+
+  DFS() {
+    const data = []
+    let current = this.root
+
+    function traverse(node) {
+      data.push(node.val)
+      if (node.left) traverse(node.left)
+      if (node.right) traverse(node.right)
+    }
+
+    traverse(current)
+    return data
+  }
+  DFS_PO() {
+    const data = []
+    let current = this.root
+
+    function traverse(node) {
+      if (node.left) traverse(node.left)
+      if (node.right) traverse(node.right)
+      data.push(node.val)
+    }
+
+    traverse(current)
+    return data
+  }
+  DFSInOrder() {
+    const data = []
+    let current = this.root
+
+    function traverse(node) {
+      if (node.left) traverse(node.left)
+      data.push(node.val)
+      if (node.right) traverse(node.right)
+    }
+
+    traverse(current)
+    return data
+  }
 }
 
 const tree = new BinarySearchTree()
@@ -64,5 +122,9 @@ tree.insert(19)
 tree.insert(13)
 tree.insert(2)
 
-console.log(tree)
-console.log(tree.find(23))
+// console.log(tree)
+// console.log(tree.find(23))
+
+console.log(tree.DFS())
+console.log(tree.DFS_PO())
+console.log(tree.DFSInOrder())
