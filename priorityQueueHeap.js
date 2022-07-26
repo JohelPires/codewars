@@ -29,8 +29,8 @@ class PriorityQueue {
   bubbleDown() {
     let idx = 0
     const len = this.values.length
-
     const e = this.values[0]
+
     while (true) {
       let leftChildIdx = 2 * idx + 1
       let rightChildIdx = 2 * idx + 2
@@ -44,8 +44,8 @@ class PriorityQueue {
       if (rightChildIdx < len) {
         rightChild = this.values[rightChildIdx]
         if (
-          (swap === null && rightChild.priority > e.priority) ||
-          (swap !== null && rightChild.priority > leftChild.priority)
+          (swap === null && rightChild.priority < e.priority) ||
+          (swap !== null && rightChild.priority < leftChild.priority)
         )
           swap = rightChildIdx
       }
