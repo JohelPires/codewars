@@ -40,6 +40,25 @@ class Graph {
     })
     delete this.adjacencyList[vertex]
   }
+
+  dfsRecursive(start) {
+    const result = []
+    const visited = {}
+    const adjacencyList = this.adjacencyList
+
+    function dfs(vertex) {
+      if (!vertex) return null
+      visited[vertex] = true
+      result.push(vertex)
+      adjacencyList[vertex].forEach((e) => {
+        if (!visited[e]) {
+          return dfs(e)
+        }
+      })
+    }
+    dfs(start)
+    return result
+  }
 }
 
 const g = new Graph()
@@ -61,3 +80,5 @@ g.addEdge('E', 'F')
 
 // g.removeEdge('Dubai', 'Guatemala')
 console.log(g.adjacencyList)
+
+console.log(g.dfsRecursive('A'))
