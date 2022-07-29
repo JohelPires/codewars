@@ -59,6 +59,36 @@ class Graph {
     dfs(start)
     return result
   }
+
+  // start = A
+  // result = [A, B, D]
+  // visited = {A: true,
+  //            B: true,
+  //            D: true}
+  //            F: true}
+  // s = [B, A, B, E]
+
+  // vertex = F
+
+  dfsIterative(start) {
+    const adjacencyList = this.adjacencyList
+    const result = []
+    const visited = {}
+    const s = []
+    s.push(start)
+    while (s.length) {
+      const vertex = s.pop()
+      if (!visited[vertex]) {
+        visited[vertex] = true
+        result.push(vertex)
+
+        adjacencyList[vertex].forEach((e) => {
+          s.push(e)
+        })
+      }
+    }
+    return result
+  }
 }
 
 const g = new Graph()
@@ -78,7 +108,6 @@ g.addEdge('D', 'E')
 g.addEdge('D', 'F')
 g.addEdge('E', 'F')
 
-// g.removeEdge('Dubai', 'Guatemala')
 console.log(g.adjacencyList)
 
-console.log(g.dfsRecursive('A'))
+console.log(g.dfsIterative('A'))
