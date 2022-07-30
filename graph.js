@@ -74,8 +74,8 @@ class Graph {
     const adjacencyList = this.adjacencyList
     const result = []
     const visited = {}
-    const s = []
-    s.push(start)
+    const s = [start]
+    // visited[start] = true
     while (s.length) {
       const vertex = s.pop()
       if (!visited[vertex]) {
@@ -86,6 +86,24 @@ class Graph {
           s.push(e)
         })
       }
+    }
+    return result
+  }
+
+  bfs(start) {
+    const q = [start]
+    const result = []
+    const visited = {}
+    visited[start] = true
+    while (q.length) {
+      const current = q.shift()
+      result.push(current)
+      this.adjacencyList[current].forEach((e) => {
+        if (!visited[e]) {
+          visited[e] = true
+          q.push(e)
+        }
+      })
     }
     return result
   }
@@ -110,4 +128,4 @@ g.addEdge('E', 'F')
 
 console.log(g.adjacencyList)
 
-console.log(g.dfsIterative('A'))
+console.log(g.bfs('A'))
