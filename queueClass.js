@@ -1,11 +1,11 @@
-class Node {
+class QueueNode {
   constructor(val) {
     this.val = val
     this.next = null
   }
 }
 
-class Queue {
+export default class Queue {
   constructor() {
     this.first = null
     this.last = null
@@ -16,7 +16,7 @@ class Queue {
   //enqueue adds to the end
 
   enqueue(val) {
-    const newNode = new Node(val)
+    const newNode = new QueueNode(val)
     if (this.size === 0) {
       this.first = newNode
       this.last = newNode
@@ -53,17 +53,17 @@ class Queue {
   }
 }
 
-const q = new Queue()
+// const q = new Queue()
 
-q.enqueue('first')
-q.enqueue('sec')
-q.enqueue('third')
-q.enqueue('4')
-q.enqueue(5)
-q.enqueue(6)
+// q.enqueue('first')
+// q.enqueue('sec')
+// q.enqueue('third')
+// q.enqueue('4')
+// q.enqueue(5)
+// q.enqueue(6)
 
-q.dequeue()
-q.dequeue()
-q.dequeue()
+// q.dequeue()
+// q.dequeue()
+// q.dequeue()
 
-q.traverse()
+// q.traverse()

@@ -9,43 +9,40 @@ class Stack {
   constructor() {
     this.first = null
     this.last = null
-    this.length = 0
+    this.size = 0
   }
 
   push(val) {
     const newNode = new Node(val)
-    if (this.length === 0) {
+    if (this.size === 0) {
       this.first = newNode
       this.last = newNode
-    } else if (this.length === 1) {
-      this.first = newNode
-      this.first.next = this.last
     } else {
       const oldFirst = this.first
       this.first = newNode
       this.first.next = oldFirst
     }
-    this.length++
-    return this.length
+    this.size++
+    return this.size
   }
 
   pop() {
-    if (this.length === 0) return null
+    if (this.size === 0) return null
     const oldNode = this.first
-    if (this.length === 1) {
+    if (this.size === 1) {
       this.first = null
       this.last = null
-      this.length = 0
+      this.size = 0
       return oldNode
     }
     this.first = oldNode.next
-    this.length--
+    this.size--
     return oldNode
   }
 
   traverse() {
     let current = this.first
-    console.log('Length: ' + this.length)
+    console.log('size: ' + this.size)
     while (current) {
       console.log(current.val)
       current = current.next
@@ -54,3 +51,6 @@ class Stack {
 }
 
 const stack = new Stack()
+
+stack.push(1)
+stack.traverse()

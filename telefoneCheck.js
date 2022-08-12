@@ -3,7 +3,11 @@ function telephoneCheck(str) {
     return true
   } else if (/^\(\d{3}\)[\s]{0,1}\d{3}[\-]{0,1}\d{4}$/.test(str)) {
     return true
-  } else if (/^\d{1}\s\d{3}\s\d{3}\s\d{4}$/.test(str)) {
+  } else if (/^1{1}\s\d{3}\s\d{3}\s\d{4}$/.test(str)) {
+    return true
+  } else if (/^1{1}\s\d{3}\-\d{3}\-\d{4}$/.test(str)) {
+    return true
+  } else if (/^1{1}\s{0,1}\(\d{3}\)\s{0,1}\d{3}\-\d{4}$/.test(str)) {
     return true
   }
   return false
