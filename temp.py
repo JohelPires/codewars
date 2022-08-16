@@ -10,5 +10,4 @@ print('Hi')
 file = open('algorithms problem solving.md')
 
 for line in file:
-    line.rstrip(\n)
     print(line)
