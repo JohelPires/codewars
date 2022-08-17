@@ -45,3 +45,16 @@ print(selic.loc[:39])
 
 teste = selic['valor'] < 0.001
 print(selic.loc[teste])
+
+#%% filtro janeiro 2020
+
+
+
+#%% filtro janeiro 2019
+
+data1 = pd.to_datetime('2019-01-01')
+data2 = pd.to_datetime('2019-01-31')
+
+filtro_janeiro_2019 = (selic['data'] > data1) & (selic['data'] < data2)
+
+print(selic.loc[filtro_janeiro_2019])
