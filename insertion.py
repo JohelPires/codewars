@@ -1,5 +1,18 @@
 import random
 
+
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+
 nums = []
 for i in range(1, 6):
     num = random.randint(1, 10)
@@ -23,5 +36,5 @@ def insertion(nums):
     return nums
 
 
-print('==========================')
-print(insertion([7, 5, 3, 2, 10]))
+print(f'{bcolors.OKCYAN}_________________________________________________________________{bcolors.ENDC}')
+print(insertion(nums))
