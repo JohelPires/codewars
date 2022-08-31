@@ -18,7 +18,7 @@ for i in range(1, 20):
     num = random.randint(1, 100)
     nums.append(num)
 
-print(f'{bcolors.OKGREEN}{nums}{bcolors.ENDC}')
+# print(f'{bcolors.OKGREEN}{nums}{bcolors.ENDC}')
 
 
 def mergesort(nums):
@@ -28,12 +28,8 @@ def mergesort(nums):
         left = nums[:mid]
         right = nums[mid:]
 
-        print(mid)
-
         mergesort(left)
-        print(left)
         mergesort(right)
-        print(right)
 
         a = 0
         b = 0
@@ -59,4 +55,4 @@ def mergesort(nums):
     return nums
 
 
-print(mergesort(nums))
+# print(mergesort(nums))
