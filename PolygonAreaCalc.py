@@ -28,12 +28,10 @@ class Rectangle:
         picture = self.height * line
         return picture
 
-    def get_amount_inside():
-
-        # Takes another shape (square or rectangle) as an argument.
-        # Returns the number of times the passed in shape could fit inside the shape (with no rotations).
-        # For instance, a rectangle with a width of 4 and a height of 8 could fit in two squares with sides of 4.
-        return 5
+    def get_amount_inside(self, obj):
+        amountW = self.width // obj.width
+        amountH = self.height // obj.height
+        return amountW * amountH
 
 
 class Square(Rectangle):
@@ -43,7 +41,7 @@ class Square(Rectangle):
         self.height = side
 
     def __str__(self):
-        return f'Square({self.width})'
+        return f'Square(side={self.width})'
 
     def set_side(self, value):
         self.height = value
@@ -72,4 +70,4 @@ print(sq.get_picture())
 
 rect.set_height(8)
 rect.set_width(16)
-# print(rect.get_amount_inside(sq))
+print(rect.get_amount_inside(sq))
