@@ -14,9 +14,15 @@ def add_time(start, duration, dow=None):
 
 # extrair o daystoadd da duração, não da hora final:
 # ou seja, refazer isso daqui:
-    if h_res >= 24:
-        daystoadd += h_res // 24
-        h_res = h_res % 24
+    # if h_res >= 24:
+    #     daystoadd += h_res // 24
+    #     h_res = h_res % 24
+
+    if int(h_dur) >= 24:
+        daystoadd = int(h_dur) // 24
+        print(daystoadd)
+        h_res = int(h_dur) % 24
+        print(h_res)
 
 # convert to AM/PM:
 
@@ -64,7 +70,7 @@ def add_time(start, duration, dow=None):
 
 
 print(add_time("2:59 AM", "24:00"))
-# to return "2:59 AM"'))
+# to return "2:59 AM"' next day))
 
 print(add_time("3:00 PM", "3:10"))
 # Returns: 6:10 PM
