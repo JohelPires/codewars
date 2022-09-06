@@ -1,6 +1,3 @@
-import math
-
-
 class Category:
 
     def __init__(self, name):
@@ -77,10 +74,8 @@ def create_spend_chart(categorias):
 
     for spent in total_spent_per_category:
         pct_per_category.append(
-            int((math.floor((spent * 100) / total_spent)/10)))
+            int((round((spent * 100) / total_spent, -1)) / 10))
 
-    print(total_spent_per_category)
-    print(pct_per_category)
     # BUILD COLUMNS:
     yaxis = []
     space_column = []
@@ -103,7 +98,7 @@ def create_spend_chart(categorias):
     for i, categ in enumerate(categorias):
         temp = []
         for j in range(10, -1, -1):
-            if pct_per_category[i] >= j:
+            if pct_per_category[i] > j:
                 temp.append('o')
             else:
                 temp.append(' ')
@@ -112,7 +107,7 @@ def create_spend_chart(categorias):
     # DRAW THE CHART:
     merged_values = []
 
-    lines = 'Percentage spent by category\n'
+    lines = ''
 
     for i in range(len(yaxis)):
         merged_str = ''
@@ -133,7 +128,7 @@ def create_spend_chart(categorias):
 
     label_lines = []
     for i, l in enumerate(max_len_arg):
-        line = '\n     '
+        line = '\n      '
         for j in range(len(categorias)):
             if i < len(categorias[j].name):
                 line += f'{categorias[j].name[i]}  '
@@ -146,29 +141,6 @@ def create_spend_chart(categorias):
 
     return lines
 
-
-food = Category("Food")
-entertainment = Category("Entertainment")
-business = Category("Business")
-
-food.deposit(900, "deposit")
-entertainment.deposit(900, "deposit")
-business.deposit(900, "deposit")
-food.withdraw(105.55)
-entertainment.withdraw(33.40)
-business.withdraw(10.99)
-actual = create_spend_chart([business, food, entertainment])
-expected = "Percentage spent by category\n100|          \n 90|          \n 80|          \n 70|    o     \n 60|    o     \n 50|    o     \n 40|    o     \n 30|    o     \n 20|    o  o  \n 10|    o  o  \n  0| o  o  o  \n    ----------\n     B  F  E  \n     u  o  n  \n     s  o  t  \n     i  d  e  \n     n     r  \n     e     t  \n     s     a  \n     s     i  \n           n  \n           m  \n           e  \n           n  \n           t  "
-
-print(actual)
-print(expected)
-# assertEqual(actual, expected,
-# 'Expected different chart representation. Check that all spacing is exact.')
-
-if actual == expected:
-    print(True)
-else:
-    print(False)
 
 # food = Category('Food')
 # travel = Category('Travel')
@@ -191,3 +163,7 @@ else:
 # print('\n\n\n')
 
 # print(create_spend_chart([food, travel, education]))
+
+
+# 'Perc[35 chars]      \n 90|           \n 80|           \n 70|[364 chars] t  '
+# 'Perc[35 chars]     \n 90|          \n 80|          \n 70|   [339 chars] t  '
