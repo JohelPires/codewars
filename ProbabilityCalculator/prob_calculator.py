@@ -1,6 +1,5 @@
 import copy
 import random
-# Consider using the modules imported above.
 
 
 class Hat:
@@ -25,7 +24,7 @@ class Hat:
 def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
     count = 0
     for i in range(num_experiments):
-        # result = False
+        result = False
         curr_test_dict = dict()
         curr_test = copy.deepcopy(hat).draw(num_balls_drawn)
         for color in curr_test:
@@ -35,14 +34,13 @@ def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
                 curr_test_dict[color] = 1
 
         partial = []
-        for key in curr_test_dict:
-            if key in expected_balls and expected_balls[key] >= curr_test_dict[key]:
+        for key in expected_balls:
+            if key in curr_test_dict and curr_test_dict[key] >= expected_balls[key]:
                 partial.append(True)
-
-        # result = expected_balls.items() <= curr_test_dict.items()
-        if len(expected_balls) == len(partial):
+            else:
+                partial.append(False)
+        if partial.count(False) == 0:
             count += 1
-        print(curr_test_dict, len(expected_balls), len(partial))
 
     return count / num_experiments
 
