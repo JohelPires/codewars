@@ -15,7 +15,6 @@ class RomanNumerals:
             sval.insert(0, '0')
         print(sval)
 
-        # casa dos milhares:
         m = ['', 'M', 'MM', 'MMM']
         c = ['', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM']
         d = ['', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC']
@@ -29,14 +28,61 @@ class RomanNumerals:
         return result
 
     def from_roman(roman_num):
-        return 0
+
+        result = roman_num
+
+        m = ['', 'M', 'MM', 'MMM']
+        c = ['', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM']
+        d = ['', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC']
+        u = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX']
+
+        # MDCLXVI
+        result = ['0', '0', '0', '0']
+        # result = result.replace('IV', '4')
+        # result = result.replace('XL', '4')
+        # result = result.replace('IV', '4')
+        if 'IV' in roman_num:
+            result[3] = '4'
+        else:
+            for i in range(len(u)-1, 0, -1):
+                if u[i] in roman_num:
+                    result[3] = str(i)
+                    break
+
+        if 'XL' in roman_num:
+            result[2] = '4'
+        else:
+            for i in range(len(d)-1, 0, -1):
+                if d[i] in roman_num:
+                    result[2] = str(i)
+                    break
+        if 'CD' in roman_num:
+            result[1] = '4'
+        else:
+            for i in range(len(c)-1, 0, -1):
+                if c[i] in roman_num:
+                    result[1] = str(i)
+                    break
+        for i in range(len(m)-1, 0, -1):
+            if m[i] in roman_num:
+                result[0] = str(i)
+                break
+
+        result = ''.join(result)
+
+        return int(result)
 
 
-print(RomanNumerals.to_roman(1000))  # , 'M', '1000 should == "M"'))
-print(RomanNumerals.to_roman(4))  # , 'IV', '4 should == "IV"'))
-print(RomanNumerals.to_roman(1))  # , 'I', '1 should == "I"'))
-print(RomanNumerals.to_roman(1990))  # , 'MCMXC', '1990 should == "MCMXC"'))
-print(RomanNumerals.to_roman(2008))  # , 'MMVIII', '2008 should == "MMVIII"'))
+print(RomanNumerals.from_roman('X'))  # , 21, 'XXI should == 21'))
+print(RomanNumerals.from_roman('IX'))  # , 21, 'XXI should == 21'))
+print(RomanNumerals.from_roman('VIII'))  # , 21, 'XXI should == 21'))
+print(RomanNumerals.from_roman('VII'))  # , 21, 'XXI should == 21'))
+print(RomanNumerals.from_roman('VI'))  # , 21, 'XXI should == 21'))
+print(RomanNumerals.from_roman('V'))  # , 21, 'XXI should == 21'))
+print(RomanNumerals.from_roman('IV'))  # , 21, 'XXI should == 21'))
+print(RomanNumerals.from_roman('III'))  # , 21, 'XXI should == 21'))
+print(RomanNumerals.from_roman('II'))  # , 21, 'XXI should == 21'))
+print(RomanNumerals.from_roman('I'))  # , 21, 'XXI should == 21'))
 print(RomanNumerals.from_roman('XXI'))  # , 21, 'XXI should == 21'))
 print(RomanNumerals.from_roman('I'))  # , 1, 'I should == 1'))
 print(RomanNumerals.from_roman('IV'))  # , 4, 'IV should == 4'))
