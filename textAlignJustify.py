@@ -16,7 +16,7 @@ def alignLeft(text, width):
         if len(' '.join(line) + words[0]) <= width:
             line.append(words.pop(0))
         elif len(' '.join(words)) <= width:
-            lines.append(words)
+            lastline = words
             words = []
 
         else:
@@ -40,12 +40,30 @@ def alignLeft(text, width):
 # for each line, calculate and add the required spaces
 
 # merge lines into text and return.
+def replacechar(index, text, char):
+    result = text[:index] + char + text[index + 1:]
+
+
+def left(text, width):
+    line = 1
+    result = text
+    lines = []
+
+    while len(result) >= width:
+        idx = result[:width*line].rfind(' ')
+        lines.append(result[:idx] + '\n')
+        result = result[idx+1:]
+    if len(result) > 0:
+        lines.append(result)
+
+    return ''.join(lines)
+
 
 def justify(text, width):
-    result = alignLeft(text, width)
+    result = left(text, width)
     return result
 
 
-print(justify('123 45 6', 7))  # , '123  45\n6')
+# print(justify('123 45 6', 7))  # , '123  45\n6')
 
-# print(justify('Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde quam ut facilis doloribus facere sit voluptatem quaerat culpa exercitationem, saepe similique eveniet tenetur distinctio eligendi impedit quidem rem assumenda vel? Adipisci, iure? Provident numquam sequi, debitis corrupti voluptatibus adipisci nisi fugiat qui ratione magni aut at vitae perferendis cupiditate iure?', 30))
+print(justify('Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde quam ut facilis doloribus facere sit voluptatem quaerat culpa exercitationem, saepe similique eveniet tenetur distinctio eligendi impedit quidem rem assumenda vel? Adipisci, iure? Provident numquam sequi, debitis corrupti voluptatibus adipisci nisi fugiat qui ratione magni aut at vitae perferendis cupiditate iure?', 30))
