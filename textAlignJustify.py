@@ -7,43 +7,6 @@
 
 # append this line to a list of lines
 
-def alignLeft(text, width):
-    words = text.split(' ')
-    lines = []
-    line = []
-    print(words)
-    while True:
-        if len(' '.join(line) + words[0]) <= width:
-            line.append(words.pop(0))
-        elif len(' '.join(words)) <= width:
-            lastline = words
-            words = []
-
-        else:
-            line.append('\n')
-            lines.append(line)
-            line = []
-            # print(words)
-        # print(['rest: '] + words)
-        if len(words) == 0:
-            break
-    print(lines)
-    for i, l in enumerate(lines):
-        lines[i] = ' '.join(l)
-
-    result = ''.join(lines)
-    return result
-
-
-# now justify:
-
-# for each line, calculate and add the required spaces
-
-# merge lines into text and return.
-def replacechar(index, text, char):
-    result = text[:index] + char + text[index + 1:]
-
-
 def left(text, width):
     line = 1
     result = text
