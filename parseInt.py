@@ -12,39 +12,54 @@ def parse_int(string):
                    'sixty': 60, 'seventy': 70, 'eighty': 80, 'ninety': 90,
 
                    'hundred': 100,
-                   'thounsand': 1000,
+                   'thousand': 1000,
                    'million': 1000000
 
                    }
 
     result = string.split(' ')
+    if 'and' in result:
+        idx = result.index('and')
+        result.pop(idx)
 
-    def slash(str):
-        str = str.split('-')
-        return number_dict[str[0]] + number_dict[str[1]]
+    def oneword(str):
+        if '-' in str:
+            str = str.split('-')
+            result = number_dict[str[0]] + number_dict[str[1]]
+        else:
+            result = number_dict[str]
+        return result
+
+    def threewords(str):
+        pass
 
     if len(result) == 1:
-        if '-' in result[0]:
-            result = slash(result[0])
-        else:
-            result = number_dict[string]
-    elif len(result) > 1 and len(result) <= 3:
-        if '-' in result[2]:
-            third = slash(result[2])
-        else:
-            third = number_dict[result[2]]
+        result = oneword(result[0])
+    elif len(result) == 2:
+        result = oneword(result[0]) * number_dict[result[1]]
+    elif len(result) == 3:
+        third = oneword(result[2])
         result = number_dict[result[0]] * number_dict[result[1]] + third
+
+    elif len(result) > 3:
+        left = str(parse_int(' '.join(result[:3])))
+        right = str(parse_int(' '.join(result[4:])))
+        result = f'{left}{right}'
 
     return result
 
 
-print(parse_int('one'))  # , 1)
+print(parse_int('twenty-six thousand three hundred and fifty-nine'))  # , 100)
+print(parse_int('one hundred'))  # , 100)
 print(parse_int('twenty'))  # 20)
 print(parse_int('forty-six'))  # 46)
 print(parse_int('seventy-eight'))  # 46)
 print(parse_int('twenty-one'))  # 46)
 print(parse_int('two hundred forty-six'))  # 246)
 print(parse_int('nine hundred seventy-nine'))  # 246)
+print(parse_int('nine hundred nineteen'))  # 246)
+# , 783919
+print(parse_int('seven hundred eighty-three thousand nine hundred and nineteen'))
 
 
 # one

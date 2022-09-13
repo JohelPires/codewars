@@ -26,17 +26,33 @@ from colorama import Fore, Back, Style
 # 2 = right to left
 # 3 = bottom to top
 
+# def snail(array):
+#     d = len(array)
+
+#     result = []
+
+#     def snail_helper(array, direction = 0):
+#         if direction==0:
+#             result.append(array[0])
+
+#     result = array.pop(0)
+#     return result
+
 def snail(array):
     d = len(array)
+    if d <= 1:
+        return array
 
-    result = []
+    perimeter = array.pop(0)
+    print(array)
+    perimeter.append(array[0].pop())
+    print(array)
+    righttoleft = array.pop()
+    perimeter.append(righttoleft[::-1])
+    print(array)
+    perimeter.append(array[0].pop(0))
 
-    def snail_helper(array, direction = 0):
-        if direction==0:
-            result.append(array[0])
-
-    result = array.pop(0)
-    return result
+    return perimeter + snail(array)
 
 
 array0 = [[1, 2],
@@ -61,7 +77,7 @@ expected = [1, 2, 3, 6, 9, 8, 7, 4, 5]
 expected2 = [1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5, 6, 7, 11, 10]
 
 
-saida = snail(array1)
+saida = snail(array3)
 
 if saida == expected:
     print(Fore.LIGHTGREEN_EX + '[PASSED]' + Fore.RESET)
