@@ -41,11 +41,18 @@ def parse_int(string):
         third = oneword(result[2])
         result = number_dict[result[0]] * number_dict[result[1]] + third
 
-    elif len(result) > 3:
+    elif len(result) == 4:
         left = str(parse_int(' '.join(result[:3])))
         right = str(parse_int(' '.join(result[4:])))
         result = f'{left}{right}'
 
+    elif len(result) > 4:
+        thousandidx = result.index('thousand')
+        hundredidx = result.index('hundred')
+        left = str(parse_int(' '.join(result[:thousandidx])))
+        middle = str(parse_int(' '.join(result[thousandidx+1:hundredidx])))
+        right = str(parse_int(' '.join(result[hundredidx:])))
+        result = f'{left}{middle}{right}'
     return result
 
 
