@@ -32,22 +32,29 @@ def stat(strg):
 
     # convert back to hh|mm|ss:
 
-    therangeH = therange // 3600
-    therangeM = (therange % 3600) // 60
-    therangeS = ((therange % 3600) % 60)
+    def backtohms(secs):
+        h = secs // 3600
+        m = (secs % 3600) // 60
+        s = ((secs % 3600) % 60)
 
-    if therangeH < 10:
-        therangeH = '0'+str(therangeH)
-    if therangeM < 10:
-        therangeM = '0'+str(therangeM)
-    if therangeS < 10:
-        therangeS = '0'+str(therangeS)
+        if h < 10:
+            h = '0'+str(h)
+        if m < 10:
+            m = '0'+str(m)
+        if s < 10:
+            s = '0'+str(s)
+
+        return f'{h}|{m}|{s}'
+
+    therange = backtohms(therange)
+    average = backtohms(average)
+    median = backtohms(median)
 
     # therangestr = f'{therangeH}{}{}'
 
     # compose result:
 
-    return therange, therangeH, therangeM, therangeS
+    return f'Range: {therange} Average: {average} Median: {median}'
 
 
 print(stat("01|15|59, 1|47|16, 01|17|20, 1|32|34, 2|17|17"))
