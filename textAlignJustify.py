@@ -14,7 +14,7 @@ def left(text, width):
     lines = []
 
     while len(result) >= width:
-        idx = result[:width*line].rfind(' ')
+        idx = result[:(width)*line].rfind(' ')
         lines.append(result[:idx] + '\n')
         result = result[idx+1:]
     if len(result) > 0:
@@ -27,7 +27,7 @@ def justify(text, width):
     lines = left(text, width)
     result = []
     for line in lines:
-        spaces_to_add = width - len(line)
+        spaces_to_add = width - len(line) + 1
         spaces_in_line = line.count(' ')
         n_of_spaces_per_space = spaces_to_add // spaces_in_line
         rest = spaces_to_add % spaces_in_line

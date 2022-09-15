@@ -53,4 +53,3 @@ sexo=c("F","M","M","F","F")
 
 df = data.frame(nome, curso, idade, salario, anos, sexo)
 print(df)
-subset(df, sexo=='F' & anos>2)
