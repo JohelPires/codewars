@@ -22,8 +22,7 @@ f2 = function(x,y){
 z = outer(x,y,f2)
 
 persp(x,y,z,theta = 30, phi = 20, col = 'orange', ticktype = 'detailed', nticks = 4)
-library(plotly)
-plot_ly(x,y,z,type = 'surface')
+ggplot2
 
 x = seq(-5, 5, by=0.5)
 y = seq(-5, 5, by=0.5)
