@@ -1,11 +1,12 @@
 import numpy as np
-# [[0 1 2]
-#  [3 4 5]
-#  [6 7 8]]
 
 
-def calculate(lista):
-    a = np.array(lista).reshape(3, 3)
+def calculate(list):
+    try:
+        a = np.array(list).reshape(3, 3)
+    except ValueError:
+        raise ValueError("List must contain nine numbers.")
+        return
 
     mean1 = a.mean(axis=0)
     mean2 = a.mean(axis=1)
@@ -31,7 +32,7 @@ def calculate(lista):
     sum2 = a.sum(axis=1)
     flattenedsum = a.flatten().sum()
 
-    result = {
+    calculations = {
         'mean': [mean1.tolist(), mean2.tolist(), flattenedmean],
         'variance': [var1.tolist(), var2.tolist(), flattenedvar],
         'standard deviation': [std1.tolist(), std2.tolist(), flattenedstd],
@@ -39,8 +40,8 @@ def calculate(lista):
         'min': [min1.tolist(), min2.tolist(), flattenedmin],
         'sum': [sum1.tolist(), sum2.tolist(), flattenedsum],
     }
-    return result
+    return calculations
 
 
-lista = [0, 1, 2, 3, 4, 5, 6, 7, 8]
-print(calculate(lista))
+list = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+print(calculate(list))
