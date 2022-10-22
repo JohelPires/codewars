@@ -4,34 +4,42 @@ from scipy.stats import linregress
 
 def draw_plot():
     # Read data from file
-    df = pd.read_csv('./epa-sea-level.csv', index_col='Year')
+    df = pd.read_csv('./epa-sea-level.csv')
 
     # Create scatter plot
-    plt.figure(figsize=(16,4))
-    plt.scatter(x=df.index, y=df['CSIRO Adjusted Sea Level'])
+    x = df['Year']
+    y = df['CSIRO Adjusted Sea Level']
+
+    fig, ax = plt.subplots(figsize=(14,4))
+    ax = plt.scatter(x, y)
 
     # Create first line of best fit
-    reg = linregress(x=df.index, y=df['CSIRO Adjusted Sea Level'])
 
-    future = [i for i in range(2014, 2051)]
-    future = pd.DataFrame(index=future)
-    df = df.append(future)
-    t = [reg.slope * i + reg.intercept for i in df.index]
-    df['linregress']=t
+    reg1 = linregress(x,y)
 
-    plt.plot(df[['CSIRO Adjusted Sea Level', 'linregress']])
+    years = [i for i in range(1880, 2051)]
+    regline1 = [reg1.slope * i + reg1.intercept for i in years]
+    regline1 = pd.Series(regline1, index=years)
+    regline1
 
     # Create second line of best fit
-    reg2df = df.loc[2000:2013].copy()
-    reg2 = linregress(x=reg2df.index, y=reg2df['CSIRO Adjusted Sea Level'])
-    reg2df = reg2df.append(future)
 
-    reg2df['linregress'] = [reg2.slope * i + reg2.intercept for i in reg2df.index]
+    x_fut = df[df['Year']>=2000]['Year'] 
+    y_fut = df[df['Year']>=2000]['CSIRO Adjusted Sea Level']
 
-    plt.plot(reg2df[['CSIRO Adjusted Sea Level', 'linregress']])
+    reg2 = linregress(x_fut, y_fut)
+
+    years_forecast = [i for i in range(2000, 2051)]
+    regline2 = [reg2.slope * i + reg2.intercept for i in years_forecast]
+    regline2 = pd.Series(regline2, index=years_forecast)
+    regline2
 
     # Add labels and title
 
+    fig, ax = plt.subplots(figsize=(14,4))
+    ax = plt.scatter(x, y)
+    plt.plot(regline1, 'r')
+    plt.plot(regline2, 'g')
     plt.xlabel('Year')
     plt.ylabel('Sea Level (inches)')
     plt.title('Rise in Sea Level')
